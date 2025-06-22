@@ -4,7 +4,7 @@ In this section a guide on how to use the code is provided including examples.
 ---
 
 ## Data needed to run a fit
-First of all, one needs data to run a fit. More specifically one need:
+First of all, one needs data to run a fit. More specifically one needs:
 
 - FK-tables
 
@@ -47,7 +47,7 @@ Then type:
 ```bash
 python generate_data.py data.yaml
 ```
-To generate data
+to generate data
 
 All the data files should be written to and read from the Data directory.
 
