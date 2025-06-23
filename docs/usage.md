@@ -32,8 +32,8 @@ data:
   pdf: "FASERv_Run3_EPOS+POWHEG_7TeV" 
   min_num_events: 20
   observable: "Eh"
-  combine_nu_nub_data: True
-  particle_id: 12
+  combine_nu_nub_data: False
+  particle_id: 14
   pdf_set: 2
   filename_fk_table: "FK_Eh_final"
   filename_binwidth: "FK_Eh_binsize"
@@ -41,8 +41,9 @@ data:
   filename_to_store_stat_error: "FASERv_Run3_EPOS+POWHEG_7TeV_stat_error"
   filename_to_store_sys_error: "FASERv_Run3_EPOS+POWHEG_7TeV_sys_error"
   filename_to_store_cov_matrix: "FASERv_Run3_EPOS+POWHEG_7TeV_cov_matrix"
-  division_factor_sys_error: 20
+  multiplication_factor_sys_error: 0.2
 ```
+where multiplication_factor_sys_error is a factor to take pseudo systematic uncertainties into account. One cna put it to 0 if one only wants to include statistical uncertainties. 
 Then type:
 ```bash
 python generate_data.py data.yaml
@@ -106,6 +107,7 @@ postfit:
   particle_id_nub: -12
   produce_plot: True
 ```
+If extended_loss is set to True one also takes positivity into account as well as ensures the neutrino PDF goes to zero in low- and high-x regions. The lag_mult_pos, lag_mult_int and x_int are the settings for this extended loss i.e. the Lagrange multipliers and the x-points to punish high-values of the neutrino PDF. If fit_faser_data is set o True the bins with the highest energy for muon and anti-muon neutrino event rates are combined due to the way FASER has measured and published the event rate measurements.
 
 When running a fit type: 
 ```bash
