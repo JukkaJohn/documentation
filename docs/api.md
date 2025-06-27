@@ -61,12 +61,6 @@ Welcome to the full API reference for the `NN_fit` package. Below you’ll find 
 ### `write_all_pdfs_to_lhapdf.py`
 ::: NN_fit.write_all_pdfs_to_lhapdf
 
-### `write_pdf_to_lhapdf_ic_bsm_elec.py`
-::: NN_fit.write_pdf_to_lhapdf_ic_bsm_elec
-
-### `write_pdfs_to_lhapdf_elec.py`
-::: NN_fit.write_pdfs_to_lhapdf_elec
-
 ---
 
 ## 🧪 Data and Reading

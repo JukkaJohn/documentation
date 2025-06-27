@@ -8,7 +8,15 @@ First make a conda environment with python=3.10
 conda create -n nnfluxnu python=3.10
 conda activate nnfluxnu
 ```
-Then install poetry using either pip or pipx.
+Then install poetry using either pip:
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+or pipx:
+```bash
+pipx install poetry
+```
 
 The code can directly be installed from the git repository using:
 ```bash

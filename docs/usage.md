@@ -24,7 +24,7 @@ The event rates and errors can either be from event rate measurements or can be 
 
 - Neutrino flux
 
-Using the file generate_data.py one can generate data, rebin it if wanted and write the data to files stored in the Data directory. This data is pseudo data and one needs an input neutrino flux with which event rates can be computed by convoluting this with the FK-table.
+Using the file ```generate_data.py``` one can generate data, rebin it if wanted and write the data to files stored in the Data directory. This data is pseudo data and one needs an input neutrino flux with which event rates can be computed by convoluting this with the FK-table.
 
 All settings for the data generation can be specified in a yaml file like this:
 ```bash
@@ -43,7 +43,7 @@ data:
   filename_to_store_cov_matrix: "FASERv_Run3_EPOS+POWHEG_7TeV_cov_matrix"
   multiplication_factor_sys_error: 0.2
 ```
-where multiplication_factor_sys_error is a factor to take pseudo systematic uncertainties into account. One cna put it to 0 if one only wants to include statistical uncertainties. 
+where ```multiplication_factor_sys_error``` is a factor to take pseudo systematic uncertainties into account. One can put it to 0 if one only wants to include statistical uncertainties. 
 Then type:
 ```bash
 python generate_data.py data.yaml
@@ -53,6 +53,21 @@ to generate data
 All the data files should be written to and read from the Data directory.
 
 ---
+
+## Available Data and Format
+In the ```Data``` directory of the git repository, all data used in this work is available: FK-tables, binning, event rates and statistical uncertainties. The filenames of this data is as follows: 
+
+```datatype_observable_(fine)_geometry_generator_7TeV_nu(mu,bmu,e,be)_W.dat```
+
+or 
+
+```datatype_observable_(fine)_geometry_generator_7TeV_comb_W.dat```
+
+The corresponding fluxes are formatted in this way:
+
+```geometry_(generator/bsm/IC)_7TeV.dat```
+
+This data was used to parametrise the neutrino fluxes which can be found in the ```neutrino_pdfs_lhpadf``` folder. The user can also use this data to make fits.
 
 ## Running a fit
 When one wants to run a fit it starts with a yaml file. In this file all settings are found, for example the structure of the NN, the data one wants to use and the training parameters:
@@ -107,11 +122,11 @@ postfit:
   particle_id_nub: -12
   produce_plot: True
 ```
-If extended_loss is set to True one also takes positivity into account as well as ensures the neutrino PDF goes to zero in low- and high-x regions. The lag_mult_pos, lag_mult_int and x_int are the settings for this extended loss i.e. the Lagrange multipliers and the x-points to punish high-values of the neutrino PDF. If fit_faser_data is set o True the bins with the highest energy for muon and anti-muon neutrino event rates are combined due to the way FASER has measured and published the event rate measurements.
+If ```extended_loss``` is set to True one also takes positivity into account as well as ensures the neutrino PDF goes to zero in low- and high-x regions. The lag_mult_pos, lag_mult_int and x_int are the settings for this extended loss i.e. the Lagrange multipliers and the x-points to punish high-values of the neutrino PDF. If fit_faser_data is set o True the bins with the highest energy for muon and anti-muon neutrino event rates are combined due to the way FASER has measured and published the event rate measurements.
 
 When running a fit type: 
 ```bash
-python execute_fit.py fit_settings.yaml
+python execute_fit.py runcards/fit_settings.yaml
 ```
 This will perform the fit and also, if wanted, perform the postfit analysis consisting of postfit measures, postfit criteria and plot the result. It will also write the results to a seperate directory and to a separate LHAPDF grid. 
 

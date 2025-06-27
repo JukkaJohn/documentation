@@ -11,40 +11,66 @@ The neutrinos react via tungsten using deep inelastic scattering like this:
 ![dis_feynman](img/feynman_dis.png)
 
 Where kinematic variables and the DIS variables are related to each other by:
-![dis_var](img/dis_var.png)
+<!-- ![dis_var](img/dis_var.png) -->
+$E_\nu = E_h + E_\ell$ 
+
+$Q^2 = 4(E_h + E_\ell)E_\ell \sin^2\left(\frac{\theta_\ell}{2}\right)$ 
+
+$x = \frac{4(E_h + E_\ell)E_\ell \sin^2\left(\frac{\theta_\ell}{2}\right)}{2m_N E_h},$
 
 In terms of these variables the charged current event rates are related to the neutrino flux by three integrals expressed in this equation:
-![events_int](img/events_int.png)
+<!-- ![events_int](img/events_int.png)
+ -->
+$N^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu) = \int_{Q^2_{\text{min}}}^{Q^2_{\text{max}}} dQ^2 \int_{x_{\text{min}}}^{x_{\text{max}}} dx \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu \, \widetilde{N}^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu)$
+
 where the integrand is given by
-![integrand](img/integrand.png)
+<!-- ![integrand](img/integrand.png) -->
+$\widetilde{N}^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu) \equiv n_T L_T \times \frac{dN_{\nu_i}(E_\nu)}{dE_\nu} \times \frac{d^2\sigma^{\nu_i A}(x, Q^2, E_\nu)}{dx dQ^2} \times \mathcal{A}(E_\ell, \theta_\ell, E_h)$
+
+
 where:
-![ntlt](img/ntlt.png)
-and
-![cross_sect](img/cross_sect.png)
-is the double differential cross section expressed in terms of DIS structure functions. And finally,
-![acc_factor](img/acc_factor.png)
+
+- $n_T$ and $L_T$ is the atomic density of the target material (Tungsten) and the length of the detector, respectively. 
+
+- $\frac{dN_{\nu_i}(E_\nu)}{dE_\nu}$ is the neutrino flux.
+
+- $\frac{d^2\sigma^{\nu_i A}(x, Q^2, y)}{dx dQ^2} = \frac{G_F^2}{4\pi x \left(1 + Q^2/m_W^2\right)^2} \left[ Y_+ F_2^{\nu p}(x, Q^2) - y^2 F_L^{\nu p}(x, Q^2) + Y_- x F_3^{\nu p}(x, Q^2) \right]$
+
+- $\mathcal{A}(E_\ell, \theta_\ell, E_h)$ is an acceptance factor modelling the acceptance region of the detector.
 
 
 ## Fast-Kernel tables: computational efficiency
 As can be seen from the equations above, the flux and the event rates are related to each other through several integrals. When trying to parametrise a neutrino flux using an NN this is very computationally expensive, since every new try for the flux results in having to do several integrals. This is why Fast-Kernel are used in this framework to replace the convolutions by a single matrix multiplication. The idea is to take the neutrino flux outside of the integral by expressing it in terms of al inear expansion using Lagrange polynomials. In order to arrive at this result, first the neutrino PDF is defined as :
-![neutrinopdf](img/neutrinopdf.png)
+
+$f_{\nu_i} = \frac{s_{pp}}{2} \frac{dN_{\nu_i}(E_\nu)}{dE_\nu}, \quad i = e, \nu, \tau$
+
 Where $x_\nu$ is the momentum fraction and is defined as:
-![xnu](img/xnu.png)
-and where $s_pp$ is the center of mass from the proton-proton collision. 
+<!-- ![xnu](img/xnu.png) -->
+$x_\nu = \frac{2 E_\nu}{s_{pp}}, \quad 0 \leq x_\nu \leq 1$
+
+and where $s_{pp}$ is the center of mass from the proton-proton collision. 
 
 The neutrino PDF is then expressed in a linear expansion in an interpolation basis:
-![interpolation](img/interpolation.png)
+<!-- ![interpolation](img/interpolation.png) -->
+$f_{\nu_i}(x_\nu) \simeq \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) I_\alpha(x_\nu)$
 
 Where $I_\alpha(x_\nu)$ are Lagrange polynomials
 
 Then the number of events are related to the neutrino PDF as follows:
-![events_pdf](img/events_pdf.png)
+<!-- ![events_pdf](img/events_pdf.png) -->
+$N^{(\nu_i)}_{\text{int}}(E_\nu) = \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu 
+\int_{Q^2_{\alpha}=1\,\text{GeV}^2}^{2m_N E_\nu} dQ^2 
+\int_{Q^2/2m_N E_\nu}^{1} dx \left[ n_T L_T \times \frac{2}{\sqrt{s_{pp}}} I_\alpha(x_\nu) \times \left. \frac{d^2\sigma^{\nu_i A}_{\text{NLO+PS}}(x, Q^2, E_\nu)}{dx dQ^2} \right|_{\text{fid}} \right]$
 
 And the FK-table is given by
-![fk_table](img/fk_table.png)
+<!-- ![fk_table](img/fk_table.png) -->
+$\text{FK}_{\alpha,j} \equiv \frac{2 n_T L_T}{\sqrt{s_{pp}}} \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu 
+\int_{Q_0^2}^{2m_N E_\nu} dQ^2 
+\int_{Q^2 / 2m_N E_\nu}^{1} dx \left[ I_\alpha(x_\nu) \frac{d^2\sigma^{\nu_i A}_{\text{NLO+PS}}(x, Q^2, E_\nu)}{dx dQ^2} \right]_{\text{fid}}$
 
 And the number of scattering events, the fk-table and the neutrino PDF are then related to each other as follows:
-![efficient_events](img/efficient_events.png)
+<!-- ![efficient_events](img/efficient_events.png) -->
+$N^{(\nu_i)}_{\text{int}}(E_\nu, j) = \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) \text{FK}_{\alpha,j}$
 
 A schematic picture of what happens is displayed below:
 
@@ -56,7 +82,8 @@ The structure of the machine learning model looks like:
 ![structure_nn](img/structure_nn.png)
 
 A preprocessing function is imposed to increase computational efficiency, smooth the paramterisation and impose non-divergent behaviour at low and high x. The NN used in the framework contains a few hidden layers with a few nodes. The loss is defined as:
-![loss](img/loss.png)
+<!-- ![loss](img/loss.png) -->
+$chi^2 = \sum_{i,j}^{N_{\text{dat}}} (D - P)_i \, C^{-1}_{ij} \, (D - P)_j,$
 
 There is also an option to extend the loss to also make sure the neutrino PDF is positive definite when this is not imposed by the activation functions.
 
