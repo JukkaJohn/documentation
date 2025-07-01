@@ -82,8 +82,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="NNfluxnu" class="md-header__button md-logo" aria-label="NNfluxnu" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../logo/NN_nu_flux_blauw.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -180,8 +179,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="NNfluxnu" class="md-nav__button md-logo" aria-label="NNfluxnu" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../logo/NN_nu_flux_blauw.png" alt="logo">
 
     </a>
     NNfluxnu
@@ -477,40 +475,65 @@
 First of all it is important to know how the neutrino fluxes and the event rate measurements are related to each other by DIS variables and kinematic variables.</p>
 <p>The neutrinos react via tungsten using deep inelastic scattering like this:
 <img alt="dis_feynman" src="../img/feynman_dis.png" /></p>
-<p>Where kinematic variables and the DIS variables are related to each other by:
-<img alt="dis_var" src="../img/dis_var.png" /></p>
-<p>In terms of these variables the charged current event rates are related to the neutrino flux by three integrals expressed in this equation:
-<img alt="events_int" src="../img/events_int.png" />
-where the integrand is given by
-<img alt="integrand" src="../img/integrand.png" />
-where:
-<img alt="ntlt" src="../img/ntlt.png" />
-and
-<img alt="cross_sect" src="../img/cross_sect.png" />
-is the double differential cross section expressed in terms of DIS structure functions. And finally,
-<img alt="acc_factor" src="../img/acc_factor.png" /></p>
+<p>Where kinematic variables and the DIS variables are related to each other by:</p>
+<!-- ![dis_var](img/dis_var.png) -->
+<p><span class="arithmatex">\(E_\nu = E_h + E_\ell\)</span> </p>
+<p><span class="arithmatex">\(Q^2 = 4(E_h + E_\ell)E_\ell \sin^2\left(\frac{\theta_\ell}{2}\right)\)</span> </p>
+<p><span class="arithmatex">\(x = \frac{4(E_h + E_\ell)E_\ell \sin^2\left(\frac{\theta_\ell}{2}\right)}{2m_N E_h},\)</span></p>
+<p>In terms of these variables the charged current event rates are related to the neutrino flux by three integrals expressed in this equation:</p>
+<!-- ![events_int](img/events_int.png)
+ -->
+<p><span class="arithmatex">\(N^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu) = \int_{Q^2_{\text{min}}}^{Q^2_{\text{max}}} dQ^2 \int_{x_{\text{min}}}^{x_{\text{max}}} dx \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu \, \widetilde{N}^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu)\)</span></p>
+<p>where the integrand is given by</p>
+<!-- ![integrand](img/integrand.png) -->
+<p><span class="arithmatex">\(\widetilde{N}^{(\nu_i)}_{\text{int}}(x, Q^2, E_\nu) \equiv n_T L_T \times \frac{dN_{\nu_i}(E_\nu)}{dE_\nu} \times \frac{d^2\sigma^{\nu_i A}(x, Q^2, E_\nu)}{dx dQ^2} \times \mathcal{A}(E_\ell, \theta_\ell, E_h)\)</span></p>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(n_T\)</span> and <span class="arithmatex">\(L_T\)</span> is the atomic density of the target material (Tungsten) and the length of the detector, respectively. </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\frac{dN_{\nu_i}(E_\nu)}{dE_\nu}\)</span> is the neutrino flux.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\frac{d^2\sigma^{\nu_i A}(x, Q^2, y)}{dx dQ^2} = \frac{G_F^2}{4\pi x \left(1 + Q^2/m_W^2\right)^2} \left[ Y_+ F_2^{\nu p}(x, Q^2) - y^2 F_L^{\nu p}(x, Q^2) + Y_- x F_3^{\nu p}(x, Q^2) \right]\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathcal{A}(E_\ell, \theta_\ell, E_h)\)</span> is an acceptance factor modelling the acceptance region of the detector.</p>
+</li>
+</ul>
 <h2 id="fast-kernel-tables-computational-efficiency">Fast-Kernel tables: computational efficiency<a class="headerlink" href="#fast-kernel-tables-computational-efficiency" title="Permanent link">&para;</a></h2>
-<p>As can be seen from the equations above, the flux and the event rates are related to each other through several integrals. When trying to parametrise a neutrino flux using an NN this is very computationally expensive, since every new try for the flux results in having to do several integrals. This is why Fast-Kernel are used in this framework to replace the convolutions by a single matrix multiplication. The idea is to take the neutrino flux outside of the integral by expressing it in terms of al inear expansion using Lagrange polynomials. In order to arrive at this result, first the neutrino PDF is defined as :
-<img alt="neutrinopdf" src="../img/neutrinopdf.png" />
-Where <span class="arithmatex">\(x_\nu\)</span> is the momentum fraction and is defined as:
-<img alt="xnu" src="../img/xnu.png" />
-and where <span class="arithmatex">\(s_pp\)</span> is the center of mass from the proton-proton collision. </p>
-<p>The neutrino PDF is then expressed in a linear expansion in an interpolation basis:
-<img alt="interpolation" src="../img/interpolation.png" /></p>
+<p>As can be seen from the equations above, the flux and the event rates are related to each other through several integrals. When trying to parametrise a neutrino flux using an NN this is very computationally expensive, since every new try for the flux results in having to do several integrals. This is why Fast-Kernel are used in this framework to replace the convolutions by a single matrix multiplication. The idea is to take the neutrino flux outside of the integral by expressing it in terms of al inear expansion using Lagrange polynomials. In order to arrive at this result, first the neutrino PDF is defined as :</p>
+<p><span class="arithmatex">\(f_{\nu_i} = \frac{s_{pp}}{2} \frac{dN_{\nu_i}(E_\nu)}{dE_\nu}, \quad i = e, \nu, \tau\)</span></p>
+<p>Where <span class="arithmatex">\(x_\nu\)</span> is the momentum fraction and is defined as:</p>
+<!-- ![xnu](img/xnu.png) -->
+<p><span class="arithmatex">\(x_\nu = \frac{2 E_\nu}{s_{pp}}, \quad 0 \leq x_\nu \leq 1\)</span></p>
+<p>and where <span class="arithmatex">\(s_{pp}\)</span> is the center of mass from the proton-proton collision. </p>
+<p>The neutrino PDF is then expressed in a linear expansion in an interpolation basis:</p>
+<!-- ![interpolation](img/interpolation.png) -->
+<p><span class="arithmatex">\(f_{\nu_i}(x_\nu) \simeq \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) I_\alpha(x_\nu)\)</span></p>
 <p>Where <span class="arithmatex">\(I_\alpha(x_\nu)\)</span> are Lagrange polynomials</p>
-<p>Then the number of events are related to the neutrino PDF as follows:
-<img alt="events_pdf" src="../img/events_pdf.png" /></p>
-<p>And the FK-table is given by
-<img alt="fk_table" src="../img/fk_table.png" /></p>
-<p>And the number of scattering events, the fk-table and the neutrino PDF are then related to each other as follows:
-<img alt="efficient_events" src="../img/efficient_events.png" /></p>
+<p>Then the number of events are related to the neutrino PDF as follows:</p>
+<!-- ![events_pdf](img/events_pdf.png) -->
+<p><span class="arithmatex">\(N^{(\nu_i)}_{\text{int}}(E_\nu) = \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu 
+\int_{Q^2_{\alpha}=1\,\text{GeV}^2}^{2m_N E_\nu} dQ^2 
+\int_{Q^2/2m_N E_\nu}^{1} dx \left[ n_T L_T \times \frac{2}{\sqrt{s_{pp}}} I_\alpha(x_\nu) \times \left. \frac{d^2\sigma^{\nu_i A}_{\text{NLO+PS}}(x, Q^2, E_\nu)}{dx dQ^2} \right|_{\text{fid}} \right]\)</span></p>
+<p>And the FK-table is given by</p>
+<!-- ![fk_table](img/fk_table.png) -->
+<p><span class="arithmatex">\(\text{FK}_{\alpha,j} \equiv \frac{2 n_T L_T}{\sqrt{s_{pp}}} \int_{E_\nu^{\text{(min)}}}^{E_\nu^{\text{(max)}}} dE_\nu 
+\int_{Q_0^2}^{2m_N E_\nu} dQ^2 
+\int_{Q^2 / 2m_N E_\nu}^{1} dx \left[ I_\alpha(x_\nu) \frac{d^2\sigma^{\nu_i A}_{\text{NLO+PS}}(x, Q^2, E_\nu)}{dx dQ^2} \right]_{\text{fid}}\)</span></p>
+<p>And the number of scattering events, the fk-table and the neutrino PDF are then related to each other as follows:</p>
+<!-- ![efficient_events](img/efficient_events.png) -->
+<p><span class="arithmatex">\(N^{(\nu_i)}_{\text{int}}(E_\nu, j) = \sum_{\alpha=1}^{n_x} f_{\nu_i}(x_{\nu,\alpha}) \text{FK}_{\alpha,j}\)</span></p>
 <p>A schematic picture of what happens is displayed below:</p>
 <p><img alt="FK_table_visual" src="../img/FK_table.pdf" /></p>
 <h2 id="the-machine-learning-model">The Machine Learning model<a class="headerlink" href="#the-machine-learning-model" title="Permanent link">&para;</a></h2>
 <p>The structure of the machine learning model looks like:</p>
 <p><img alt="structure_nn" src="../img/structure_nn.png" /></p>
-<p>A preprocessing function is imposed to increase computational efficiency, smooth the paramterisation and impose non-divergent behaviour at low and high x. The NN used in the framework contains a few hidden layers with a few nodes. The loss is defined as:
-<img alt="loss" src="../img/loss.png" /></p>
+<p>A preprocessing function is imposed to increase computational efficiency, smooth the paramterisation and impose non-divergent behaviour at low and high x. The NN used in the framework contains a few hidden layers with a few nodes. The loss is defined as:</p>
+<!-- ![loss](img/loss.png) -->
+<p><span class="arithmatex">\(chi^2 = \sum_{i,j}^{N_{\text{dat}}} (D - P)_i \, C^{-1}_{ij} \, (D - P)_j,\)</span></p>
 <p>There is also an option to extend the loss to also make sure the neutrino PDF is positive definite when this is not imposed by the activation functions.</p>
 <p>When training the NN, a so-called stopping algorithm is employed, which looks like:
 <img alt="stopping" src="../img/stopping.png" /></p>
