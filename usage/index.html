@@ -82,8 +82,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="NNfluxnu" class="md-header__button md-logo" aria-label="NNfluxnu" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../logo/NN_nu_flux_blauw.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -180,8 +179,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="NNfluxnu" class="md-nav__button md-logo" aria-label="NNfluxnu" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../logo/NN_nu_flux_blauw.png" alt="logo">
 
     </a>
     NNfluxnu
@@ -271,6 +269,15 @@
   <a href="#data-needed-to-run-a-fit" class="md-nav__link">
     <span class="md-ellipsis">
       Data needed to run a fit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-data-and-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Data and Format
     </span>
   </a>
   
@@ -382,6 +389,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#available-data-and-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Data and Format
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-a-fit" class="md-nav__link">
     <span class="md-ellipsis">
       Running a fit
@@ -419,7 +435,7 @@
 <p>In this section a guide on how to use the code is provided including examples.</p>
 <hr />
 <h2 id="data-needed-to-run-a-fit">Data needed to run a fit<a class="headerlink" href="#data-needed-to-run-a-fit" title="Permanent link">&para;</a></h2>
-<p>First of all, one needs data to run a fit. More specifically one need:</p>
+<p>First of all, one needs data to run a fit. More specifically one needs:</p>
 <ul>
 <li>
 <p>FK-tables</p>
@@ -449,14 +465,14 @@
 <p>Neutrino flux</p>
 </li>
 </ul>
-<p>Using the file generate_data.py one can generate data, rebin it if wanted and write the data to files stored in the Data directory. This data is pseudo data and one needs an input neutrino flux with which event rates can be computed by convoluting this with the FK-table.</p>
+<p>Using the file <code>generate_data.py</code> one can generate data, rebin it if wanted and write the data to files stored in the Data directory. This data is pseudo data and one needs an input neutrino flux with which event rates can be computed by convoluting this with the FK-table.</p>
 <p>All settings for the data generation can be specified in a yaml file like this:
 <div class="highlight"><pre><span></span><code>data:
 <span class="w">  </span>pdf:<span class="w"> </span><span class="s2">&quot;FASERv_Run3_EPOS+POWHEG_7TeV&quot;</span><span class="w"> </span>
 <span class="w">  </span>min_num_events:<span class="w"> </span><span class="m">20</span>
 <span class="w">  </span>observable:<span class="w"> </span><span class="s2">&quot;Eh&quot;</span>
-<span class="w">  </span>combine_nu_nub_data:<span class="w"> </span>True
-<span class="w">  </span>particle_id:<span class="w"> </span><span class="m">12</span>
+<span class="w">  </span>combine_nu_nub_data:<span class="w"> </span>False
+<span class="w">  </span>particle_id:<span class="w"> </span><span class="m">14</span>
 <span class="w">  </span>pdf_set:<span class="w"> </span><span class="m">2</span>
 <span class="w">  </span>filename_fk_table:<span class="w"> </span><span class="s2">&quot;FK_Eh_final&quot;</span>
 <span class="w">  </span>filename_binwidth:<span class="w"> </span><span class="s2">&quot;FK_Eh_binsize&quot;</span>
@@ -464,17 +480,26 @@
 <span class="w">  </span>filename_to_store_stat_error:<span class="w"> </span><span class="s2">&quot;FASERv_Run3_EPOS+POWHEG_7TeV_stat_error&quot;</span>
 <span class="w">  </span>filename_to_store_sys_error:<span class="w"> </span><span class="s2">&quot;FASERv_Run3_EPOS+POWHEG_7TeV_sys_error&quot;</span>
 <span class="w">  </span>filename_to_store_cov_matrix:<span class="w"> </span><span class="s2">&quot;FASERv_Run3_EPOS+POWHEG_7TeV_cov_matrix&quot;</span>
-<span class="w">  </span>division_factor_sys_error:<span class="w"> </span><span class="m">20</span>
+<span class="w">  </span>multiplication_factor_sys_error:<span class="w"> </span><span class="m">0</span>.2
 </code></pre></div>
+where <code>multiplication_factor_sys_error</code> is a factor to take pseudo systematic uncertainties into account. One can put it to 0 if one only wants to include statistical uncertainties. 
 Then type:
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>generate_data.py<span class="w"> </span>data.yaml
 </code></pre></div>
-To generate data</p>
+to generate data</p>
 <p>All the data files should be written to and read from the Data directory.</p>
 <hr />
+<h2 id="available-data-and-format">Available Data and Format<a class="headerlink" href="#available-data-and-format" title="Permanent link">&para;</a></h2>
+<p>In the <code>Data</code> directory of the git repository, all data used in this work is available: FK-tables, binning, event rates and statistical uncertainties. The filenames of this data is as follows: </p>
+<p><code>datatype_observable_(fine)_geometry_generator_7TeV_nu(mu,bmu,e,be)_W.dat</code></p>
+<p>or </p>
+<p><code>datatype_observable_(fine)_geometry_generator_7TeV_comb_W.dat</code></p>
+<p>The corresponding fluxes are formatted in this way:</p>
+<p><code>geometry_(generator/bsm/IC)_7TeV.dat</code></p>
+<p>This data was used to parametrise the neutrino fluxes which can be found in the <code>neutrino_pdfs_lhpadf</code> folder. The user can also use this data to make fits.</p>
 <h2 id="running-a-fit">Running a fit<a class="headerlink" href="#running-a-fit" title="Permanent link">&para;</a></h2>
 <p>When one wants to run a fit it starts with a yaml file. In this file all settings are found, for example the structure of the NN, the data one wants to use and the training parameters:</p>
-<div class="highlight"><pre><span></span><code>model:
+<p><div class="highlight"><pre><span></span><code>model:
 <span class="w">  </span>hidden_layers:<span class="w"> </span><span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span>,4<span class="o">]</span>
 <span class="w">  </span>activation_function:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;softplus&quot;</span>,<span class="s2">&quot;softplus&quot;</span>,<span class="s2">&quot;softplus&quot;</span><span class="o">]</span>
 <span class="w">  </span>preproc:<span class="w"> </span>True
@@ -523,8 +548,9 @@ postfit:
 <span class="w">  </span>particle_id_nub:<span class="w"> </span>-12
 <span class="w">  </span>produce_plot:<span class="w"> </span>True
 </code></pre></div>
+If <code>extended_loss</code> is set to True one also takes positivity into account as well as ensures the neutrino PDF goes to zero in low- and high-x regions. The lag_mult_pos, lag_mult_int and x_int are the settings for this extended loss i.e. the Lagrange multipliers and the x-points to punish high-values of the neutrino PDF. If fit_faser_data is set o True the bins with the highest energy for muon and anti-muon neutrino event rates are combined due to the way FASER has measured and published the event rate measurements.</p>
 <p>When running a fit type: 
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>execute_fit.py<span class="w"> </span>fit_settings.yaml
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>execute_fit.py<span class="w"> </span>runcards/fit_settings.yaml
 </code></pre></div>
 This will perform the fit and also, if wanted, perform the postfit analysis consisting of postfit measures, postfit criteria and plot the result. It will also write the results to a seperate directory and to a separate LHAPDF grid. </p>
 <hr />
