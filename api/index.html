@@ -6688,15 +6688,15 @@ training_length : int
         <span class="n">mean_pdf_nub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">neutrino_pdfs_mub</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">std_pdf_nu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">neutrino_pdfs_mu</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">std_pdf_nub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">neutrino_pdfs_mub</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/opt/anaconda3/envs/nnfluxnu/share/LHAPDF/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">diff_lev_1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_0000.dat&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lhapdf_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">diff_lev_1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_0000.dat&quot;</span>
 
-        <span class="n">pdf_dict_error</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_pdf_nu</span>
-        <span class="n">pdf_dict_error</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_pdf_nub</span>
-        <span class="n">pdf_dict_central</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_pdf_nu</span>
-        <span class="n">pdf_dict_central</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_pdf_nub</span>
+        <span class="n">pdf_dict_error</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_pdf_nu</span>
+        <span class="n">pdf_dict_error</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_pdf_nub</span>
+        <span class="n">pdf_dict_central</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_pdf_nu</span>
+        <span class="n">pdf_dict_central</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_pdf_nub</span>
         <span class="n">write_lhapdf_grid</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">pdf_dict_central</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 
-        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/opt/anaconda3/envs/nnfluxnu/share/LHAPDF/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">diff_lev_1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_0001.dat&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lhapdf_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">diff_lev_1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">neutrino_pdf_fit_name_lhapdf</span><span class="si">}</span><span class="s2">_0001.dat&quot;</span>
         <span class="n">write_lhapdf_grid</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">pdf_dict_error</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_losses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -9981,7 +9981,7 @@ path : str
 
 
 <h2 id="NN_fit.MC_data_reps.generate_MC_replicas" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">generate_MC_replicas</span><span class="p">(</span><span class="n">REPLICAS</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sig_sys</span><span class="p">,</span> <span class="n">sig_stat</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">generate_MC_replicas</span><span class="p">(</span><span class="n">REPLICAS</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sig_sys</span><span class="p">,</span> <span class="n">sig_stat</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">fit_level</span><span class="p">)</span></code>
 
 <a href="#NN_fit.MC_data_reps.generate_MC_replicas" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -10045,12 +10045,19 @@ path : str
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
-<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_MC_replicas</span><span class="p">(</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_MC_replicas</span><span class="p">(</span>
     <span class="n">REPLICAS</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">sig_sys</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">sig_stat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">fit_level</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate level 2 data MC replicas for the NN fit by adding a level 1 and then a level 2 gaussian noise to the data</span>
 
@@ -10064,7 +10071,12 @@ path : str
     <span class="n">r_stat_1</span> <span class="o">=</span> <span class="n">rng_level1</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="n">sig_stat</span>
 
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">REPLICAS</span><span class="p">):</span>
-        <span class="n">data_level1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">r_sys_1</span> <span class="o">+</span> <span class="n">r_stat_1</span>
+        <span class="k">if</span> <span class="n">fit_level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r_sys_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="n">sig_sys</span>
+            <span class="n">r_stat_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="n">sig_stat</span>
+            <span class="n">data_level1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">r_sys_1</span> <span class="o">+</span> <span class="n">r_stat_1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data_level1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">r_sys_1</span> <span class="o">+</span> <span class="n">r_stat_1</span>
         <span class="n">r_sys_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="n">sig_sys</span>
         <span class="n">r_stat_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="n">sig_stat</span>
 
@@ -12487,7 +12499,9 @@ rebin_high_bin : np.ndarray
 
             <details class="quote">
               <summary>Source code in <code>NN_fit/generate_data.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">185</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span>
 <span class="normal">188</span>
@@ -12606,9 +12620,7 @@ rebin_high_bin : np.ndarray
 <span class="normal">301</span>
 <span class="normal">302</span>
 <span class="normal">303</span>
-<span class="normal">304</span>
-<span class="normal">305</span>
-<span class="normal">306</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate_entries_with_indices</span><span class="p">(</span>
+<span class="normal">304</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate_entries_with_indices</span><span class="p">(</span>
     <span class="n">fk_tables</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">binwidths</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -12800,7 +12812,9 @@ binwidths_mub : np.ndarray
 
             <details class="quote">
               <summary>Source code in <code>NN_fit/generate_data.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
 <span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
@@ -12938,9 +12952,7 @@ binwidths_mub : np.ndarray
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_pseudo_data</span><span class="p">(</span>
+<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_pseudo_data</span><span class="p">(</span>
     <span class="n">filename_fk_mub_n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">filename_fk_mub_p</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">filename_fk_mu_n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -13159,7 +13171,9 @@ multiplication_factor_sys_error : float
 
             <details class="quote">
               <summary>Source code in <code>NN_fit/generate_data.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">309</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
 <span class="normal">312</span>
@@ -13395,9 +13409,7 @@ multiplication_factor_sys_error : float
 <span class="normal">542</span>
 <span class="normal">543</span>
 <span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
-<span class="normal">547</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_data</span><span class="p">(</span>
+<span class="normal">545</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_data</span><span class="p">(</span>
     <span class="n">filename_fk_mub_n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">filename_fk_mub_p</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">filename_fk_mu_n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
