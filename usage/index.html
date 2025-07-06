@@ -518,7 +518,8 @@ to generate data</p>
 <p><code>geometry_(generator/bsm/IC)_7TeV.dat</code></p>
 <p>This data was used to parametrise the neutrino fluxes which can be found in the <code>neutrino_pdfs_lhpadf</code> folder. The user can also use this data to make fits.</p>
 <h2 id="running-a-fit">Running a fit<a class="headerlink" href="#running-a-fit" title="Permanent link">&para;</a></h2>
-<p>When one wants to run a fit it starts with a yaml file. In this file all settings are found, for example the structure of the NN, the data one wants to use and the training parameters:</p>
+<p>The fitting code is available in the directory <code>NN_fit/src/NN_fit/</code>.
+When one wants to run a fit it starts with a yaml file. In this file all settings are found, for example the structure of the NN, the data one wants to use and the training parameters:</p>
 <p><div class="highlight"><pre><span></span><code>model:
 <span class="w">  </span>hidden_layers:<span class="w"> </span><span class="o">[</span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span>,4<span class="o">]</span>
 <span class="w">  </span>activation_function:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;softplus&quot;</span>,<span class="s2">&quot;softplus&quot;</span>,<span class="s2">&quot;softplus&quot;</span><span class="o">]</span>
